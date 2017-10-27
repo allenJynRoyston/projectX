@@ -103,6 +103,12 @@ Changing a property in the store is easy:
  this.store.commit('setName', 'Allen')
 ```
 
+Reading the property in the store:
+```
+ console.log( this.store.getters._name() ) // 'Allen'
+```
+
+
 And watching for changes is equally as easy.  Just place this in your mounted() state:
 ```
   data () {
