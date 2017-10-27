@@ -8,30 +8,15 @@
           | Game Creation Suite
         a.button(@click='toggleModal()')
           | Get Started
-
-    .modal(v-bind:class='modalIsOpen ? "is-active" : ""')
-      .modal-background
-      .modal-card
-        header.modal-card-head
-          p.modal-card-title Modal title
-          button.delete(aria-label='close' @click='toggleModal()')
-        section.modal-card-body
-          h1 Content
-        footer.modal-card-foot
-          button.button.is-success Save changes
-          button.button(@click='toggleModal()') Cancel
 </template>
 
 <script>
-import shortParagraph1 from "../assets/images/site/short-paragraph.png"
-
 export default {
   name: 'main-header',
   data () {
     return {
       modalIsOpen: false,
-      store: this.$store,
-      shortParagraph1: shortParagraph1
+      store: this.$store
     }
   },
   created() {
@@ -39,7 +24,7 @@ export default {
   },
   methods: {
     toggleModal() {
-      this.modalIsOpen = !this.modalIsOpen;
+      this.store.commit('setModal', !this.store.getters._modalIsOpen())
     }
   }
 }

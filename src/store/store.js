@@ -6,31 +6,45 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     appReady: false,
-    isActive: false,
     progressBar: 0,
-    headerIsOpen: true
+    overlayIsOpen: false,
+    headerIsOpen: true,
+    modalIsOpen: false
   },
   getters: {
     _appReady: state => () => state.appReady,
-    _isActive: state => () => state.isActive,
+    _overlayIsOpen: state => () => state.overlayIsOpen,
     _progressBar: state => () => state.progressBar,
-    _headerIsOpen: state => () => state.headerIsOpen
+    _headerIsOpen: state => () => state.headerIsOpen,
+    _modalIsOpen: state => () => state.modalIsOpen
   },
   mutations: {
     setAppState(state, value){
       state.appReady = value
     },
-    overlay_on(state) {
-      state.isActive = true;
-    },
-    overlay_off(state) {
-      state.isActive = false;
-    },
+    // PROGRESS BAR
     setProgressBar(state, value){
       state.progressBar = value;
     },
-    setHeader (state, value) {
-      state.headerIsOpen = value
+    // OVERLAY
+    overlay_set(state, value){
+      state.overlayIsOpen = value;
+    },
+    overlay_on(state) {
+      state.overlayIsOpen = true;
+    },
+    overlay_off(state) {
+      state.overlayIsOpen = false;
+    },
+    // MODAL
+    setModal (state, value) {
+      state.modalIsOpen = value
+    },
+    openModal (state) {
+      state.modalIsOpen = true
+    },
+    closeModal (state) {
+      state.modalIsOpen = false
     }
   }
 })

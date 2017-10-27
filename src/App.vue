@@ -1,10 +1,11 @@
 <template lang='pug'>
   #app-layout
     overlay
-    main-header
-    navigation
-    router-view
-    main-footer
+    #site(v-bind:class='applyBlur ? "blur-fx" : ""')
+      main-header
+      navigation
+      router-view
+      main-footer
 </template>
 
 <script>
@@ -17,17 +18,26 @@ export default {
   data() {
     return {
       store: this.$store,
+      applyBlur: this.$store.getters._modalIsOpen(),
       images: [
         test_image
       ]
     }
   },
-  mounted(){
-    this.store.commit('overlay_on')
+  mounted(){    
     this.imageLoader(this.images, this.finishedLoading)
+
+    this.store.watch(this.store.getters._overlayIsOpen, val => {
+      this.applyBlur = val
+    })
+
+    this.store.watch(this.store.getters._modalIsOpen, val => {
+      this.applyBlur = val
+    })
   },
   methods:{
     imageLoader(Images, Callback){
+        this.store.commit('overlay_on')
         let store = this.store;
         let allLoaded = 0;
         let _log = {
@@ -72,5 +82,8 @@ export default {
 </style>
 
 <style lang="sass" scoped>
-
+  .blur-fx
+    -webkit-filter: blur(4px)
+    -moz-filter: blur(4px)
+    filter: blur(4px) grayscale(80%)
 </style>
