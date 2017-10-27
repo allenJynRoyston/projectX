@@ -98,16 +98,16 @@ Make sure you declare it in a component before using it.
   },
 ```
 
-Reading the property in the store:
-```
- this.store.commit('setName', 'Wizard')
- console.log( this.store.getters._name() ) // wizard
-```
-
 Changing a property in the store is easy:
 ```
  this.store.commit('setName', 'Allen')
 ```
+
+Reading the property in the store:
+```
+ console.log( this.store.getters._name() ) // 'Allen'
+```
+
 
 And watching for changes is equally as easy.  Just place this in your mounted() state:
 ```
