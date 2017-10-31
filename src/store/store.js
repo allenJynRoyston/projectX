@@ -9,14 +9,55 @@ export default new Vuex.Store({
     progressBar: 0,
     overlayIsOpen: false,
     headerIsOpen: true,
-    modalIsOpen: false
+    modalIsOpen: false,
+    details: {
+      title: 'Game Title',
+      sidebar: {
+        developer: [
+          {title: 'Allen Royston', isLink: true},
+          {title: 'Amanda Vivalaqua', isLink: true}
+        ],
+        publisher: [
+          {title: 'X Games', isLink: true}
+        ],
+        director: [
+          {title: 'Allen Royston', isLink: true}
+        ],
+        artist:  [
+          {title: 'Artist Name', isLink: true}
+        ],
+        writer:  [
+          {title: 'Writer Name', isLink: true}
+        ],
+        composer: [
+          {title: 'None', isLink: false}
+        ],
+        series:  [
+          {title: 'None', isLink: false}
+        ],
+        platforms: [
+          {title: 'PC (Flash)', isLink: false},
+          {title: 'PC (HTML5)', isLink: false}
+        ],
+        release:  [
+          {title: '11/3/1111', isLink: false}
+        ],
+        genres:  [
+          {title: 'Text adventure', isLink: false}
+        ],
+        modes:  [
+          {title: 'Single-player', isLink: false}
+        ]
+      }
+    }
   },
   getters: {
     _appReady: state => () => state.appReady,
     _overlayIsOpen: state => () => state.overlayIsOpen,
     _progressBar: state => () => state.progressBar,
     _headerIsOpen: state => () => state.headerIsOpen,
-    _modalIsOpen: state => () => state.modalIsOpen
+    _modalIsOpen: state => () => state.modalIsOpen,
+    _details: state => () => state.details
   },
   mutations: {
     setAppState(state, value){
@@ -45,6 +86,6 @@ export default new Vuex.Store({
     },
     closeModal (state) {
       state.modalIsOpen = false
-    }
+    },
   }
 })
