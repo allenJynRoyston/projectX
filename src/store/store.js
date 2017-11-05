@@ -54,9 +54,7 @@ export default new Vuex.Store({
     glitch: 0,
     popupMessage: [],
     triggers: {
-      pages: {
-        about: false
-      },
+      about: {active: false, hasTriggeredBefore: false}
     },
   },
   getters: {
@@ -118,7 +116,11 @@ export default new Vuex.Store({
     },
     // TRIGGERS
     setTriggers(state, data) {
-      state.triggers[data.root][data.type] = data.value
+      state.triggers[data.location] = data.payload;
+    },
+    resetAndLockTrigger(state, location) {
+      state.triggers[location] = {active: false, hasTriggeredBefore: true}
     }
+
   }
 })

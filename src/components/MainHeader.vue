@@ -2,25 +2,31 @@
   section.hero.is-primary
     .hero-body
       .container
-        h1.title
-          | Vue + Vuex
-        h2.subtitle
-          | Game Creation Suite
-        a.button(@click='toggleModal()')
-          | Get Started
+        .columns
+          .column.is-one-quarter
+            img(v-bind:src='gameArt')
+          .column
+            h1.title(v-if='this.details !== null')
+              | {{details.title}} Wiki
+            a.button(@click='toggleModal()')
+              | Get Started
 </template>
 
 <script>
+import gameArt from "../assets/images/site/placeholder.png"
+
 export default {
   name: 'main-header',
   data () {
     return {
       modalIsOpen: false,
-      store: this.$store
+      store: this.$store,
+      details: null,
+      gameArt: gameArt
     }
   },
-  created() {
-
+  mounted() {
+    this.details = this.store.getters._details();
   },
   methods: {
     toggleModal() {

@@ -2,9 +2,10 @@
   #app-layout
     overlay
     #site(v-bind:class='applyBlur ? "blur-fx" : ""')
-      main-header
-      navigation
-      router-view
+      .container.master-container
+        main-header
+        navigation
+        router-view
       main-footer
     popup
 </template>
@@ -13,6 +14,7 @@
 import './assets/js/global.js'
 
 import test_image from "./assets/images/misc/ninja-icon.png"
+import gameArt from "./assets/images/site/placeholder.png"
 
 export default {
   name: 'app',
@@ -23,11 +25,15 @@ export default {
       popup: {},
       applyBlur: this.$store.getters._modalIsOpen(),
       images: [
-        test_image
+        test_image,
+        gameArt
       ]
     }
   },
   mounted(){
+
+    $('body').backstretch('../src/assets/game/images/600x300.jpg')
+
     this.imageLoader(this.images, this.finishedLoading)
 
     this.store.watch(this.store.getters._overlayIsOpen, val => {
@@ -85,8 +91,14 @@ export default {
 </style>
 
 <style lang="sass" scoped>
+  .master-container
+    margin-top: 50px
+    background-color: white
+    margin-bottom: 50px
+
   .blur-fx
     -webkit-filter: blur(4px)
     -moz-filter: blur(4px)
     filter: blur(4px) grayscale(80%)
+
 </style>

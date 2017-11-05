@@ -1,10 +1,10 @@
 <template lang="pug">
   .container(style='min-height: 800px')
     .section
-      div(v-if='!this.triggered')
+      div(v-if='!this.triggered.active')
         h1 Section has not been viewed yet
         p Please check back later.
-      div(v-if='this.triggered')
+      div(v-if='this.triggered.active')
         h1 GET OUT GET OUT GET OUT GET OUT
 </template>
 
@@ -21,21 +21,26 @@ export default {
     }
   },
   mounted(){
-
     // checxk if this page has been visited before
-    this.triggered = this.store.getters._triggers().pages.about
+    this.triggered = this.store.getters._triggers().about
 
-    setTimeout(() => {
-      this.store.commit('setPopupMessage', {message: 'About section has been updated', type: 'is-info'})
-      this.store.commit('setHaunt', 1)
-    }, 1000)
+    // reset and lock trigger
+    if(this.triggered.active && !this.triggered.hasTriggeredBefore){
+      this.store.commit('resetAndLockTrigger', 'about')
+    }
   },
   methods: {
 
   },
   destroyed(){
-    // set commit for trigger status
-    this.store.commit('setTriggers', {root: 'pages', type: 'about', value: true})
+    // only trigger this event once
+    if(!this.triggered.active && !this.triggered.hasTriggeredBefore){
+      setTimeout(() => {
+        this.store.commit('setPopupMessage', {message: 'About section has been updated', type: 'is-info'})
+        this.store.commit('setHaunt', 1)
+        this.store.commit('setTriggers', {location: 'about', payload: {active: true, hasTriggeredBefore: false}})
+      }, 1000)
+    }
   }
 }
 </script>

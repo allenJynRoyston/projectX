@@ -26,6 +26,12 @@ export default {
     this.store.watch(this.store.getters._popupMessage, val => {
       this.showPopup = true;
       this.popup = val[0];
+      // auto clear messages after 5 seconds
+      setTimeout(() => {
+        if(this.showPopup){
+          this.clearPopupMessage()
+        }
+      }, 5000)
     })
   },
   methods: {

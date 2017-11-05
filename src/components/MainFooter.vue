@@ -29,4 +29,5 @@ export default {
   .demo-panel
     padding: 20px
     overflow: hidden
+    background-color: white
 </style>
