@@ -23,33 +23,42 @@
     section#table-of-contents
       p Contents
       ul
-        li.main(v-for='(content, index) in tableOfContents')
+        li.main(v-for='(content, index) in tableOfContents' v-if='content.show')
           span {{index}} &nbsp;
-            a  {{content.title}}
+            a(@click='jumpTo(content.title.toLowerCase())')  {{content.title}}
           ul(v-if='content.subContents.length > 0')
             li.sub(v-for='subcontent in content.subContents')
                 a  {{subcontent.title}}
 
-    section#gameplay
+    // sections
+    section(v-for='(content, index) in tableOfContents' v-bind:id='content.title.toLowerCase()' v-if='content.show')
       h1.subtitle.no-margin
-        strong Gameplay
+        strong {{content.title}} &nbsp;&nbsp;
+        span.edit-text(v-if='content.allowEdit')
+          | [
+          a edit
+          | ]
       hr.no-margin
       br
-      p
-        | {{details.title}} is a short game experience, only lasting about 10 minutes and features primarily text.  Most notably was the visceral and gory images that would randomly present themselves during gameplay.
-        | {{lorem}}
+      div(v-html='testcontent')
 
-
-    section#plot
+    // debug
+    section
       h1.subtitle.no-margin
-        strong Plot
-      hr.no-margin
-      br
-      p
-        | {{details.title}} {{lorem}}
+        strong Debugger &nbsp;&nbsp;
+      p Haunt levels ({{haunt}}):
+        a(@click='hauntMore()') &nbsp;&nbsp;+&nbsp;&nbsp;
+        | /
+        a(@click='hauntLess()') &nbsp;&nbsp;-&nbsp;&nbsp;
+      p Glitch levels ({{glitch}}):
+        a(@click='glitchMore()') &nbsp;&nbsp;+&nbsp;&nbsp;
+        | /
+        a(@click='glitchLess()') &nbsp;&nbsp;-&nbsp;&nbsp;
 </template>
 
 <script>
+import gamecontent from '../content.json'
+
 export default {
   name: 'home',
   data () {
@@ -57,29 +66,60 @@ export default {
       store: this.$store,
       details: this.$store.getters._details(),
       tableOfContents: [
-        {title: 'Gameplay', subContents: []},
+        {title: 'Gameplay', subContents: [], show: true, allowEdit: true},
         {title: 'Plot', subContents: [
           {title: 'Characters and settings'},
           {title: 'Story'}
-        ]},
+        ], show: true, allowEdit: false},
         {title: 'Development', subContents: [
           {title: 'Story and themes'}
-        ]},
-        {title: 'Release', subContents: []},
-        {title: 'Reception', subContents: []},
-        {title: 'Sequel', subContents: []},
-        {title: 'References', subContents: []},
-        {title: 'External Links', subContents: []}
+        ], show: true, allowEdit: false},
+        {title: 'Release', subContents: [], show: true, allowEdit: false},
+        {title: 'Reception', subContents: [], show: true, allowEdit: false},
+        {title: 'Sequel', subContents: [], show: true, allowEdit: false},
+        {title: 'References', subContents: [], show: true, allowEdit: false},
+        {title: 'External Links', subContents: [], show: true, allowEdit: false}
       ],
       lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+      gamecontent,
+      testcontent:`
+        <p>
+          Lorem ipsum dolor sit amet, <a onclick='changeHash("about")'>consectetur</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+        </p>
+      `,
+      haunt: null,
+      glitch: null,
       game: null
     }
   },
   mounted() {
-
+    this.haunt = this.store.getters._haunt();
+    this.glitch = this.store.getters._glitch();
+    this.store.watch(this.store.getters._haunt, val => {
+      this.haunt = val;
+    })
+    this.store.watch(this.store.getters._glitch, val => {
+      this.glitch = val;
+    })
   },
   methods: {
+    hauntMore(){
+      this.store.commit('setHaunt', (this.store.getters._haunt()) + 1)
+    },
+    hauntLess(){
+      this.store.commit('setHaunt', (this.store.getters._haunt()) - 1)
+    },
 
+    glitchMore(){
+      this.store.commit('setGlitch', (this.store.getters._glitch()) + 1)
+    },
+    glitchLess(){
+      this.store.commit('setGlitch', (this.store.getters._glitch()) - 1)
+    },
+
+    jumpTo(link){
+      window.changeSection(link)
+    }
   }
 }
 </script>
@@ -108,7 +148,6 @@ export default {
     list-style-type: disc
     margin-left: 20px
 
-
   #sidebar-contents
     border: 1px solid gray
     background-color: lightgray
@@ -131,7 +170,9 @@ export default {
     text-decoration: line-through
     color: darkgray
 
+  .edit-text
+    font-size: 12px
+
   section
     margin-bottom: 25px
-    
 </style>

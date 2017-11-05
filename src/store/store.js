@@ -49,7 +49,15 @@ export default new Vuex.Store({
           {title: 'Single-player', isLink: false}
         ]
       }
-    }
+    },
+    haunt: 0,
+    glitch: 0,
+    popupMessage: [],
+    triggers: {
+      pages: {
+        about: false
+      },
+    },
   },
   getters: {
     _appReady: state => () => state.appReady,
@@ -57,7 +65,11 @@ export default new Vuex.Store({
     _progressBar: state => () => state.progressBar,
     _headerIsOpen: state => () => state.headerIsOpen,
     _modalIsOpen: state => () => state.modalIsOpen,
-    _details: state => () => state.details
+    _details: state => () => state.details,
+    _haunt: state => () => state.haunt,
+    _glitch: state => () => state.glitch,
+    _popupMessage: state => () => state.popupMessage,
+    _triggers: state => () => state.triggers
   },
   mutations: {
     setAppState(state, value){
@@ -66,6 +78,9 @@ export default new Vuex.Store({
     // PROGRESS BAR
     setProgressBar(state, value){
       state.progressBar = value;
+    },
+    setHeader(state, value){
+      state.headerIsOpen = value
     },
     // OVERLAY
     overlay_set(state, value){
@@ -87,5 +102,23 @@ export default new Vuex.Store({
     closeModal (state) {
       state.modalIsOpen = false
     },
+    // SET GAME LEVELS
+    setHaunt(state, level) {
+      state.haunt = level
+    },
+    setGlitch(state, level) {
+      state.glitch = level
+    },
+    // POPUPS
+    setPopupMessage(state, data) {
+      state.popupMessage.push({header: data.header ? data.header : 'The site has been updated', message: data.message, type: data.type})
+    },
+    clearPopupMessage(state) {
+      state.popupMessage.shift()
+    },
+    // TRIGGERS
+    setTriggers(state, data) {
+      state.triggers[data.root][data.type] = data.value
+    }
   }
 })

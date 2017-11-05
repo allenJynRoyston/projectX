@@ -1,37 +1,11 @@
 <template lang="pug">
-  .container
+  .container(style='min-height: 800px')
     .section
-      .box
-          article.media
-              .media-left
-                figure.image.is-64x64
-                  img(src='https://bulma.io/images/placeholders/128x128.png', alt='Image')
-              |
-              .media-content
-                .content
-                  p
-                    strong John Smith
-                    |
-                    small @johnsmith
-                    |
-                    small 31m
-                    |
-                    br
-                    |           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-                |
-                nav.level.is-mobile
-                  .level-left
-                    a.level-item
-                      span.icon.is-small
-                        i.fa.fa-reply
-                    |
-                    a.level-item
-                      span.icon.is-small
-                        i.fa.fa-retweet
-                    |
-                    a.level-item
-                      span.icon.is-small
-                        i.fa.fa-heart
+      div(v-if='!this.triggered')
+        h1 Section has not been viewed yet
+        p Please check back later.
+      div(v-if='this.triggered')
+        h1 GET OUT GET OUT GET OUT GET OUT
 </template>
 
 <script>
@@ -42,11 +16,26 @@ export default {
   data () {
     return {
       store: this.$store,
+      triggered: false,
       shortParagraph1: shortParagraph1
     }
   },
+  mounted(){
+
+    // checxk if this page has been visited before
+    this.triggered = this.store.getters._triggers().pages.about
+
+    setTimeout(() => {
+      this.store.commit('setPopupMessage', {message: 'About section has been updated', type: 'is-info'})
+      this.store.commit('setHaunt', 1)
+    }, 1000)
+  },
   methods: {
 
+  },
+  destroyed(){
+    // set commit for trigger status
+    this.store.commit('setTriggers', {root: 'pages', type: 'about', value: true})
   }
 }
 </script>

@@ -10,7 +10,7 @@ import Overlay from '../components/Overlay.vue'
 import MainFooter from '../components/MainFooter.vue'
 import RightSidebar from '../components/RightSidebar.vue'
 import BoxArt from '../components/BoxArt.vue'
-
+import Popup from '../components/Popup.vue'
 
 // pages
 import Home from '../components/Home.vue'
@@ -31,6 +31,7 @@ Vue.component('GameComponent', require('../components/GameComponent.vue'))
 Vue.component('ThreeComponent', require('../components/ThreeComponent.vue'))
 Vue.component('RightSidebar', require('../components/RightSidebar.vue'))
 Vue.component('BoxArt', require('../components/BoxArt.vue'))
+Vue.component('Popup', require('../components/Popup.vue'))
 
 Vue.use(Router)
 Vue.use(VueResource);

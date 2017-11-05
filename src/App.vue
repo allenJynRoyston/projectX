@@ -6,6 +6,7 @@
       navigation
       router-view
       main-footer
+    popup
 </template>
 
 <script>
@@ -18,13 +19,15 @@ export default {
   data() {
     return {
       store: this.$store,
+      showPopup: false,
+      popup: {},
       applyBlur: this.$store.getters._modalIsOpen(),
       images: [
         test_image
       ]
     }
   },
-  mounted(){    
+  mounted(){
     this.imageLoader(this.images, this.finishedLoading)
 
     this.store.watch(this.store.getters._overlayIsOpen, val => {

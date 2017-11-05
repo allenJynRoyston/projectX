@@ -14,11 +14,17 @@ export default {
     }
   },
   mounted(){
-    this.init()
+    this.loadGame('wavey.js')
   },
   methods: {
-    init(){
-      this.loadGame('wavey.js')
+    loadFile(fileName){
+      let js = document.createElement("script");
+          js.type = "text/javascript";
+          js.src = `${fileName}`;
+          document.body.appendChild(js);
+          let res = js.onload = (() => {
+            console.log(`${fileName} loaded.`)
+          })
     },
     loadGame(fileName){
       // remove old game first

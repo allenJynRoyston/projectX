@@ -2,10 +2,9 @@
   #sidebar-contents
     p.text-center {{details.title}}
     center
-      img.profile-pic(src='src/assets/game/images/face-200x200.jpg')
+      img.profile-pic
       box-art.box-offset
-      small North American cover art
-    br
+      small North American cover art         
     section(v-for="(value, propertyName) in details.sidebar")
       .columns
         .column.is-3
