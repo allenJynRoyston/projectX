@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import './assets/js/global.js'
+import router from './router/router'
 
+import './assets/js/global.js'
 import test_image from "./assets/images/misc/ninja-icon.png"
 import gameArt from "./assets/images/site/placeholder.png"
 
@@ -31,18 +32,36 @@ export default {
     }
   },
   mounted(){
-
+    // backstretch
     $('body').backstretch('../src/assets/game/images/600x300.jpg')
 
+    // watch for image loaders
     this.imageLoader(this.images, this.finishedLoading)
 
+    // watch store changes
     this.store.watch(this.store.getters._overlayIsOpen, val => {
       this.applyBlur = val
     })
-
     this.store.watch(this.store.getters._modalIsOpen, val => {
       this.applyBlur = val
     })
+
+    // watch hash change event
+    window.onhashchange = function(){
+      let hash = (window.location.hash).replace(/[^\w\s!?]/g,'');
+      let changeTo = router.options.routes[0].path
+      for (let {path} of router.options.routes) {
+        if(path === `/${hash}`){
+          changeTo = hash;
+        }
+      }
+      router.push({ path: changeTo })
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      //console.log(to, from)
+    }
   },
   methods:{
     imageLoader(Images, Callback){

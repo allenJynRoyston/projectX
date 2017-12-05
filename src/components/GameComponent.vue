@@ -23,7 +23,7 @@ export default {
           js.src = `${fileName}`;
           document.body.appendChild(js);
           let res = js.onload = (() => {
-            console.log(`${fileName} loaded.`)
+            
           })
     },
     loadGame(fileName){

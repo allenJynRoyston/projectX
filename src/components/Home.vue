@@ -40,7 +40,7 @@
           | ]
       hr.no-margin
       br
-      div(v-html='testcontent')
+      div(v-html='getContent(content.title)')
 
     // debug
     section
@@ -80,16 +80,9 @@ export default {
         {title: 'References', subContents: [], show: true, allowEdit: false},
         {title: 'External Links', subContents: [], show: true, allowEdit: false}
       ],
-      lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
       gamecontent,
-      testcontent:`
-        <p>
-          Lorem ipsum dolor sit amet, <a onclick='changeHash("about")'>consectetur</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
-      `,
       haunt: null,
       glitch: null,
-      game: null
     }
   },
   mounted() {
@@ -102,7 +95,20 @@ export default {
       this.glitch = val;
     })
   },
+
   methods: {
+    getContent(section){
+      // not ready
+      if(this.haunt === null){
+        return ''
+      }
+      // property doesn't exists (error)
+      if(this.gamecontent[section.toLowerCase()] === undefined){
+        return '<p>No data - error</p>'
+      }
+      // else load correctl["0"].
+      return this.gamecontent[section.toLowerCase()].haunt[this.haunt];
+    },
     hauntMore(){
       this.store.commit('setHaunt', (this.store.getters._haunt()) + 1)
     },
@@ -116,7 +122,6 @@ export default {
     glitchLess(){
       this.store.commit('setGlitch', (this.store.getters._glitch()) - 1)
     },
-
     jumpTo(link){
       window.changeSection(link)
     }

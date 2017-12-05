@@ -1,3 +1,58 @@
 {
-    "content" : "I am content and this is a json file!"
+    "gameplay" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "plot" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "development" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "release" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "reception" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "sequel" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "references" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    },
+    "external links" :{
+      "haunt": {
+        "0":"<p style='text-decoration: line-through; color: red'> 1 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "1":"<p style='text-decoration: line-through; color: blue'> 2 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>",
+        "2":"<p style='text-decoration: line-through; color: green'> 3 Lorem ipsum dolor sit amet, <a onclick='changeHash(\"about\")'>consectetur</a></p>"
+      }
+    }
 }
