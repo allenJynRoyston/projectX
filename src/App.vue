@@ -21,6 +21,7 @@ export default {
   name: 'app',
   data() {
     return {
+      message: 'Hello world',
       store: this.$store,
       showPopup: false,
       popup: {},

@@ -1,0 +1,42 @@
+{
+  "details": {
+    "title": "Game title",
+    "sidebar": {
+      "developer": [
+        {"title": "Allen Royston", "isLink": true},
+        {"title": "Amanda Vivalaqua", "isLink": true}
+      ],
+      "publisher": [
+        {"title": "X Games", "isLink": true}
+      ],
+      "director": [
+        {"title": "Allen Royston", "isLink": true}
+      ],
+      "artist":  [
+        {"title": "Artist Name", "isLink": true}
+      ],
+      "writer":  [
+        {"title": "Writer Name", "isLink": true}
+      ],
+      "composer": [
+        {"title": "None", "isLink": false}
+      ],
+      "series":  [
+        {"title": "None", "isLink": false}
+      ],
+      "platforms": [
+        {"title": "PC (Flash)", "isLink": false},
+        {"title": "PC (HTML5)", "isLink": false}
+      ],
+      "release":  [
+        {"title": "11/3/1111", "isLink": false}
+      ],
+      "genres":  [
+        {"title": "Text adventure", "isLink": false}
+      ],
+      "modes":  [
+        {"title": "Single-player", "isLink": false}
+      ]
+    }
+  }
+}
