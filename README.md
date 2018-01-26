@@ -14,7 +14,7 @@
 
 ### Install instructions:
 ```sh
-$ git clone https://github.com/allenRoyston/vue-vuex-webpack-es6-phaser-boilerplate.git
+$ git clone https://github.com/allenRoyston/projectX.git
 $ cd vue-vuex-webpack-es6-phaser-boilerplate
 $ npm install
 $ npm run dev (USE THIS WHEN DEVELOPING)
